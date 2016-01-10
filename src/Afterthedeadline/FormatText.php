@@ -52,7 +52,7 @@ class FormatText
 
     public function __toString()
     {
-        return "<div id='atd-content'>".nl2br($this->output)."</div>".$this->getStylesAndScript();
+        return "<div id='atd-content'>".nl2br($this->output)."</div><button onclick='atd.finished()'>Finished</button>".$this->getStylesAndScript();
     }
 
     private function string($result, $replace = false)
@@ -163,6 +163,16 @@ atd.closeAllPopovers = function() {
 }
 atd.ucFirst = function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+atd.finished = function() {
+    $('#atd-content span').each(function(){
+        atd.activeEl = this;
+        atd.ignoreString();
+    });
+    atd.output();
+}
+atd.output = function() {
+    alert($('#atd-content').html());
 }
 </script>";
 
