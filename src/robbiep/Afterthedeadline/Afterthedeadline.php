@@ -126,7 +126,7 @@ class Afterthedeadline
 
     private function debug($response)
     {
-        return dump($response);
+
     }
 
 

@@ -1,7 +1,7 @@
 <?php namespace RobbieP\Afterthedeadline;
 
 
-use Verdant\XML2Array;
+use LaLit\XML2Array;
 
 class Response {
 

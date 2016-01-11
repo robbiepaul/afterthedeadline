@@ -14,15 +14,14 @@
     "require": {
         "php": ">=5.5.0",
         "guzzlehttp/guzzle": "~5.0",
-        "verdant/xml2array": "dev-master",
-        "symfony/var-dumper": "^3.1@dev"
+        "rquadling/lalit": "1.*"
     },
     "require-dev": {
         "mockery/mockery": "dev-master@dev"
     },
     "autoload": {
-        "psr-4": {
-            "RobbieP\\": ["src", "tests"]
+        "psr-0": {
+            "RobbieP\\Afterthedeadline\\": "src/"
         }
     },
     "minimum-stability": "dev",
