@@ -55,7 +55,7 @@ class Afterthedeadline
         if(! empty( $this->results ) ) {
             return $this->results;
         }
-        return ['errors' => 0];
+        return false;
     }
 
     public function getFormatted()
