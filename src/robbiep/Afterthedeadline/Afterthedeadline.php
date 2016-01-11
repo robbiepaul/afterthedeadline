@@ -58,9 +58,11 @@ class Afterthedeadline
         return false;
     }
 
-    public function getFormatted()
+    public function getFormatted($results = [])
     {
-        $results = $this->getResults();
+        if(empty($results)) {
+            $results = $this->getResults();
+        }
         if(!empty($results)) {
             $formatted = new FormatText($this->text, $results);
             return $formatted;

@@ -52,7 +52,7 @@ class FormatText
 
     public function __toString()
     {
-        return "<div id='atd-content'>".nl2br($this->output)."</div><button onclick='atd.finished()'>Finished</button>".$this->getStylesAndScript();
+        return "<div id='atd-content'>".nl2br($this->output)."</div>"; //<button onclick='atd.finished()'>Finished</button>".$this->getStylesAndScript();
     }
 
     private function string($result, $replace = false)
