@@ -14,7 +14,8 @@
     "require": {
         "php": ">=5.5.0",
         "guzzlehttp/guzzle": "~5.0",
-        "rquadling/lalit": "1.*"
+        "rquadling/lalit": "1.*",
+        "illuminate/support": "^5.0"
     },
     "require-dev": {
         "mockery/mockery": "dev-master@dev"
