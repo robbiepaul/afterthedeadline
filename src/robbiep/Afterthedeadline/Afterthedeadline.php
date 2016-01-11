@@ -124,10 +124,5 @@ class Afterthedeadline
         return $this->getClient()->get($this->url($string), $this->params);
     }
 
-    private function debug($response)
-    {
-
-    }
-
 
 }
