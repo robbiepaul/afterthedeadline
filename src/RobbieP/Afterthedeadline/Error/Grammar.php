@@ -6,10 +6,11 @@ class Grammar extends ErrorAbstract
 {
     use HasInfo;
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
-        //$this->getInfo();
-
         return [
             'string' => $this->string,
             'description' => $this->description,

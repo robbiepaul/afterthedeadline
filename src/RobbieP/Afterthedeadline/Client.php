@@ -14,12 +14,20 @@ class Client {
     protected $request;
     protected $response;
 
+    /**
+     * Client constructor.
+     */
     public function __construct()
     {
         $this->adapter = new \GuzzleHttp\Client();
         $this->response = new Response();
     }
 
+    /**
+     * @param $url
+     * @param $params
+     * @return Response
+     */
     public function get($url, $params)
     {
         $body = [
@@ -32,6 +40,11 @@ class Client {
         return $this->response;
     }
 
+    /**
+     * @param $url
+     * @param $params
+     * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
+     */
     public function post($url, $params)
     {
         $body = [

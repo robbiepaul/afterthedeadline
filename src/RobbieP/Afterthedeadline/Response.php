@@ -7,6 +7,9 @@ class Response {
 
     protected $xml;
 
+    /**
+     * @param $response
+     */
     public function setResponse($response)
     {
         if($response instanceof \GuzzleHttp\Message\Response) {
@@ -14,6 +17,10 @@ class Response {
         }
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function get()
     {
         $array = XML2Array::createArray( $this->xml );

@@ -1,10 +1,8 @@
-<?php require_once('vendor/autoload.php');
+<?php require_once('../vendor/autoload.php');
 
-$func = $_GET['func'];
+$m = new \RobbieP\Afterthedeadline\Afterthedeadline(['key' => md5(time())]);
 
-$m = new \RobbieP\Afterthedeadline\Afterthedeadline(['key' => '53f56b35fa823bb64c26a095dc141800']);
-
-$m->{$func}("I started my schooling as the majority did in my area, at the local primarry school. I then
+$m->checkDocument("I started my schooling as the majority did in my area, at the local primarry school. I then
 went to the local secondarry school and recieved grades in English, Maths, Phisics,
 Biology, Geography, Art, Graphical Comunication and Philosophy of Religeon. I'll not
 bore you with the 'A' levels and above.
@@ -20,5 +18,15 @@ shoots and leaves\" that many people were excused from the rigours of learning E
 grammar during their schooling over the last 30 or so years because the majority or
 decision-makers decided one day that it might hinder imagination and expresion (so
 what, I ask, happened to all those expresive and imaginative people before the ruling?).");
+?>
+<html>
+<head></head>
+<body>
+    <?php echo $m->getFormatted(); ?>
 
-return dd(json_encode($m->getResults()));
+
+    <?php echo $m->getFormatted()->getStylesAndScript(); ?>
+
+
+</body>
+</html>

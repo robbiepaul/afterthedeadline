@@ -13,11 +13,20 @@ class Afterthedeadline
     protected $stats = [];
     protected $text;
 
+    /**
+     * Afterthedeadline constructor.
+     * @param $data
+     */
     public function __construct($data)
     {
         $this->config = new ATDConfig($data);
     }
 
+    /**
+     * @param $text
+     * @param array $params
+     * @return $this
+     */
     public function checkDocument($text, $params = [])
     {
         $this->text = $text;
@@ -27,6 +36,11 @@ class Afterthedeadline
         return $this;
     }
 
+    /**
+     * @param $text
+     * @param array $params
+     * @return $this
+     */
     public function checkGrammar($text, $params = [])
     {
         $this->text = $text;
@@ -36,6 +50,11 @@ class Afterthedeadline
         return $this;
     }
 
+    /**
+     * @param $text
+     * @param array $params
+     * @return $this
+     */
     public function stats($text, $params = [])
     {
         $params['data'] = $text;
@@ -45,11 +64,18 @@ class Afterthedeadline
         return $this;
     }
 
+    /**
+     * @param $error
+     * @return mixed
+     */
     protected function info($error)
     {
         return $error->getInfo();
     }
 
+    /**
+     * @return array|bool
+     */
     public function getResults()
     {
         if(! empty( $this->results ) ) {
@@ -58,6 +84,10 @@ class Afterthedeadline
         return false;
     }
 
+    /**
+     * @param array $results
+     * @return FormatText
+     */
     public function getFormatted($results = [])
     {
         if(empty($results)) {
@@ -70,11 +100,18 @@ class Afterthedeadline
 
     }
 
+    /**
+     * @param string $endpoint
+     * @return string
+     */
     protected function url($endpoint = '')
     {
         return 'http://' .$this->getLanguage() . $this->url . '/' . $endpoint;
     }
 
+    /**
+     * @return Client
+     */
     protected function getClient()
     {
         if( is_null($this->client) ) {
@@ -83,6 +120,10 @@ class Afterthedeadline
         return $this->client;
     }
 
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
     protected function getApiKey()
     {
         if( ! $this->hasApiKey() ) {
@@ -91,6 +132,9 @@ class Afterthedeadline
         return $this->config->get('key');
     }
 
+    /**
+     * @return string
+     */
     protected function getLanguage()
     {
         if( $this->hasLanguage() ) {
@@ -99,21 +143,35 @@ class Afterthedeadline
 
     }
 
+    /**
+     * @return bool
+     */
     protected function hasApiKey()
     {
         return $this->hasConfigValue('key');
     }
 
+    /**
+     * @return bool
+     */
     protected function hasLanguage()
     {
         return $this->hasConfigValue('lang');
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     protected function hasConfigValue($key)
     {
         return ! empty( $this->config->get($key) );
     }
 
+    /**
+     * @param $params
+     * @throws \Exception
+     */
     private function setParams($params)
     {
         if(!empty($this->text)) $this->params['data'] = $this->text;
@@ -121,6 +179,10 @@ class Afterthedeadline
         $this->params = array_merge($this->params, $params);
     }
 
+    /**
+     * @param $string
+     * @return Response
+     */
     private function endpoint($string)
     {
         return $this->getClient()->get($this->url($string), $this->params);

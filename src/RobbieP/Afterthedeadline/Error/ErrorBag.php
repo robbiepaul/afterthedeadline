@@ -9,6 +9,11 @@ class ErrorBag
         'grammar' => 'RobbieP\Afterthedeadline\Error\Grammar',
     ];
 
+    /**
+     * @param $type
+     * @param array $data
+     * @return mixed
+     */
     public static function get($type, $data = [])
     {
         if(in_array($type, array_keys(self::$errors))) {

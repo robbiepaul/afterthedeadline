@@ -7,6 +7,9 @@ class Suggestion extends ErrorAbstract
 {
     use HasSuggestions, HasInfo;
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         //$this->getInfo();

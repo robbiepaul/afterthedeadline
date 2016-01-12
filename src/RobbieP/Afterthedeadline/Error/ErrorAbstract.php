@@ -9,16 +9,28 @@ abstract class ErrorAbstract
     public $suggestions;
     public $type;
 
+    /**
+     * ErrorAbstract constructor.
+     * @param $result
+     */
     public function __construct($result)
     {
         $this->fill($result);
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function get($key)
     {
         return $this->{$key};
     }
 
+    /**
+     * @param $result
+     * @throws \Exception
+     */
     private function fill($result)
     {
         $data = (array) $result;
@@ -27,6 +39,11 @@ abstract class ErrorAbstract
         }
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @throws \Exception
+     */
     public function set($key, $value)
     {
         if(! property_exists($this, $key)) {
@@ -35,6 +52,9 @@ abstract class ErrorAbstract
         $this->{$key} = $value;
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return [

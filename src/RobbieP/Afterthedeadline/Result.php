@@ -10,6 +10,10 @@ class Result {
     protected $errorBag = [];
     protected $resultArray = [];
 
+    /**
+     * Result constructor.
+     * @param $results
+     */
     public function __construct($results)
     {
         if(isset($results['error']) && ! empty($results['error']) ) {
@@ -19,11 +23,17 @@ class Result {
         }
     }
 
+    /**
+     * @param $result
+     */
     private function addError($result)
     {
         $this->errorBag[] = ErrorBag::get($result['type'], $result);
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         if(! empty($this->errorBag )) {

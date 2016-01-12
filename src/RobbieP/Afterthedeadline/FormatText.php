@@ -69,7 +69,7 @@ class FormatText
         return $string;
     }
 
-    private function getStylesAndScript()
+    public function getStylesAndScript()
     {
         $style =  "<style>.atd-popover-grammar .popover-content h3{ margin: 0 0 10px 0;font-size: 1.4em;} .atd-popover-grammar .popover-content{font-size:0.9em} .atd-popover hr {margin-bottom:5px} .atd-popover ul.list-unstyled li a { cursor:pointer;padding:5px;display: block }.atd-spelling{cursor:pointer;border-bottom: 1px dotted tomato !important;}.atd-grammar{cursor:pointer;border-bottom: 1px dotted green !important;}.atd-suggestion{cursor:pointer;border-bottom: 1px dotted #0085ff !important;}</style>";
         $script = "

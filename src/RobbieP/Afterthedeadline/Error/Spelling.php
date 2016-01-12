@@ -6,6 +6,9 @@ class Spelling extends ErrorAbstract
 {
     use HasSuggestions;
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return [
