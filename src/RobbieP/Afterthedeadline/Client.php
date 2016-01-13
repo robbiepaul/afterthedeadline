@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: robbiepaul
- * Date: 20/04/15
- * Time: 16:51
- */
-
-namespace RobbieP\Afterthedeadline;
+<?php namespace RobbieP\Afterthedeadline;
 
 class Client {
 
