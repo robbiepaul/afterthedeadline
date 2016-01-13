@@ -5,7 +5,7 @@ abstract class ErrorAbstract
 {
     public $string;
     public $description;
-        public $precontext;
+    public $precontext;
     public $suggestions;
     public $type;
 

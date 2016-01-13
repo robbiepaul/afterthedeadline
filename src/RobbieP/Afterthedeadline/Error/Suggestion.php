@@ -18,7 +18,8 @@ class Suggestion extends ErrorAbstract
             'string' => $this->string,
             'description' => $this->description,
             'precontext' => $this->precontext,
-            'suggestions' => $this->getSuggestions()
+            'suggestions' => $this->getSuggestions(),
+            'url' => $this->url
         ];
     }
 

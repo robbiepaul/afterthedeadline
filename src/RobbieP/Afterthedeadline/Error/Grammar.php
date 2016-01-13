@@ -14,7 +14,8 @@ class Grammar extends ErrorAbstract
         return [
             'string' => $this->string,
             'description' => $this->description,
-            'precontext' => $this->precontext
+            'precontext' => $this->precontext,
+            'url' => $this->url
         ];
     }
 

@@ -193,7 +193,7 @@ class Afterthedeadline
      */
     private function setParams($params)
     {
-        if(!empty($this->text)) $this->params['data'] = $this->text;
+        if(!empty($this->text)) $this->params['data'] = self::filterText($this->text);
         $this->params['key'] = $this->getApiKey();
         $this->params = array_merge($this->params, $params);
     }
@@ -205,6 +205,18 @@ class Afterthedeadline
     private function endpoint($string)
     {
         return $this->getClient()->get($this->url($string), $this->params);
+    }
+
+    /**
+     * Gets rid of @usernames and #hashtags
+     *
+     * @param $text
+     * @return mixed
+     */
+    public static function filterText($text)
+    {
+        $text = preg_replace('/[#@](\w+)/i', '', $text);
+        return $text;
     }
 
 
