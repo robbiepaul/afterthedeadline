@@ -2,7 +2,7 @@
 
 trait HasInfo
 {
-    protected $url;
+    public $url;
     public $hint_html;
     public $hint_text;
 
