@@ -60,7 +60,7 @@ $atd = new \RobbieP\Afterthedeadline\Afterthedeadline(['key' => md5('<unique str
 Or you can set it inline:
 ```php
 $atd = new \RobbieP\Afterthedeadline\Afterthedeadline(['key' => md5('<unique string>')]);
-$atd->setLanguage('de');
+$atd->setLanguage(\RobbieP\Afterthedeadline\Language::GERMAN);
 ```
 
 ## If you're using it in Laravel...
