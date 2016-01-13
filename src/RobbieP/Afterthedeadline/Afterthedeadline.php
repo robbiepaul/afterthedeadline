@@ -137,10 +137,29 @@ class Afterthedeadline
      */
     protected function getLanguage()
     {
-        if( $this->hasLanguage() ) {
-            return $this->config->get('lang') . '.';
+        if( $this->hasLanguage() && ($lang = $this->config->get('lang') !== 'en') ) {
+            return $lang . '.';
         }
+    }
 
+
+    /**
+     *  French - fr.service.afterthedeadline.com
+     *  German - de.service.afterthedeadline.com
+     *  Portuguese - pt.service.afterthedeadline.com
+     *  Spanish - es.service.afterthedeadline.com
+     *
+     * @param $lang
+     * @return $this
+     * @throws \Exception
+     */
+    public function setLanguage($lang)
+    {
+        if(strlen($lang) !== 2) {
+            throw new \Exception("setLanguage only accepts the 2 letter country code");
+        }
+        $this->config->set('lang', strtolower($lang));
+        return $this;
     }
 
     /**
