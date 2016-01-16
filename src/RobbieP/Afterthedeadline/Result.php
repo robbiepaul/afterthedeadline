@@ -16,9 +16,14 @@ class Result {
      */
     public function __construct($results)
     {
-        if(isset($results['error']) && ! empty($results['error']) ) {
-            foreach($results['error'] as $result) {
-                $this->addError($result);
+
+        if(isset($results['error']) && ! empty($results['error'])) {
+            if(!isset($results['error']['type'])) {
+                foreach ($results['error'] as $result) {
+                    $this->addError($result);
+                }
+            } else {
+                $this->addError($results['error']);
             }
         }
     }
