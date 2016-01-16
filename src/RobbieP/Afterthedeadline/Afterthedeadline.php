@@ -86,15 +86,16 @@ class Afterthedeadline
 
     /**
      * @param array $results
+     * @param bool $container
      * @return FormatText
      */
-    public function getFormatted($results = [])
+    public function getFormatted($results = [], $container = true)
     {
         if(empty($results)) {
             $results = $this->getResults();
         }
         if(!empty($results)) {
-            $formatted = new FormatText($this->text, $results);
+            $formatted = new FormatText($this->text, $results, $container);
             return $formatted;
         }
 

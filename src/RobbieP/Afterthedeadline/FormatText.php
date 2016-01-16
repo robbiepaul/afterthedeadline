@@ -10,12 +10,14 @@ class FormatText
     protected $content;
     protected $results = [];
     protected $output;
+    private $container;
 
 
-    public function __construct($text, $results = [])
+    public function __construct($text, $results = [], $container)
     {
         $this->content = $text;
         $this->results = $results;
+        $this->container = $container;
 
         $this->format();
     }
@@ -52,7 +54,7 @@ class FormatText
 
     public function __toString()
     {
-        return "<div id='atd-content'>".nl2br($this->output)."</div>"; //<button onclick='atd.finished()'>Finished</button>".$this->getStylesAndScript();
+        return $this->wrapContainer(nl2br($this->output)); //<button onclick='atd.finished()'>Finished</button>".$this->getStylesAndScript();
     }
 
     private function string($result, $replace = false)
@@ -178,6 +180,14 @@ atd.output = function() {
 
 
         return $style.$script;
+    }
+
+    private function wrapContainer($output)
+    {
+        if(!$this->container) {
+            return $output;
+        }
+        return "<div id='atd-content'>".$output."</div>";
     }
 
 
