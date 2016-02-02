@@ -1,5 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
 
+namespace RobbieP\Afterthedeadline;
 
 class Language
 {
@@ -7,5 +8,4 @@ class Language
     const SPANISH = 'es';
     const FRENCH = 'fr';
     const PORTUGUESE = 'pt';
-
 }

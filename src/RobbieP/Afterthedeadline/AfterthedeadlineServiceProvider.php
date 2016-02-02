@@ -1,9 +1,11 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
+
+namespace RobbieP\Afterthedeadline;
 
 use Illuminate\Support\ServiceProvider;
 
-class AfterthedeadlineServiceProvider extends ServiceProvider {
-
+class AfterthedeadlineServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -30,8 +32,7 @@ class AfterthedeadlineServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['afterthedeadline'] = $this->app->share(function($app)
-        {
+        $this->app['afterthedeadline'] = $this->app->share(function ($app) {
             return new Afterthedeadline(config('afterthedeadline'));
         });
     }
@@ -50,7 +51,4 @@ class AfterthedeadlineServiceProvider extends ServiceProvider {
     {
         return $this->app['config']["robbiep/afterthedeadline::$key"];
     }
-
-
-
 }

@@ -1,10 +1,11 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
 
+namespace RobbieP\Afterthedeadline;
 
 use LaLit\XML2Array;
 
-class Response {
-
+class Response
+{
     protected $xml;
 
     /**
@@ -12,26 +13,28 @@ class Response {
      */
     public function setResponse($response)
     {
-        if($response instanceof \GuzzleHttp\Message\Response) {
+        if ($response instanceof \GuzzleHttp\Message\Response) {
             $this->xml = ''.$response->getBody();
         }
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function get()
     {
-        $array = XML2Array::createArray( $this->xml );
-        if(isset($array['results']))  {
+        $array = XML2Array::createArray($this->xml);
+        if (isset($array['results'])) {
             $result = new Result($array['results']);
+
             return $result->toArray();
         }
-        if(isset($array['stats']))  {
+        if (isset($array['stats'])) {
             return $array['stats'];
         }
+
         return $array;
     }
-
 }

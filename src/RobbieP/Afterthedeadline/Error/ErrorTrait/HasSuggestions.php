@@ -1,5 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline\Error\ErrorTrait;
+<?php
 
+namespace RobbieP\Afterthedeadline\Error\ErrorTrait;
 
 trait HasSuggestions
 {

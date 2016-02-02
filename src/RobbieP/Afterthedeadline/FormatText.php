@@ -1,5 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
 
+namespace RobbieP\Afterthedeadline;
 
 use RobbieP\Afterthedeadline\Error\Grammar;
 use RobbieP\Afterthedeadline\Error\Spelling;
@@ -12,8 +13,7 @@ class FormatText
     protected $output;
     private $container;
 
-
-    public function __construct($text, $results = [], $container)
+    public function __construct($text, $results, $container)
     {
         $this->content = $text;
         $this->results = $results;
@@ -24,7 +24,7 @@ class FormatText
 
     private function format()
     {
-        foreach($this->results as $result) {
+        foreach ($this->results as $result) {
             $this->content = $this->setWords($result);
         }
     }
@@ -32,21 +32,25 @@ class FormatText
     private function setWords($result)
     {
         $text = str_replace($this->string($result), $this->string($result, true), $this->content);
+
         return $this->output = $text;
     }
 
     private function wrapSpan($result)
     {
-        switch(true){
-            case ($result instanceof Spelling):
+        switch (true) {
+            case $result instanceof Spelling:
                 $suggestions = json_encode($result->getSuggestions());
+
                 return "<span class='atd-{$result->type}' data-suggestions='{$suggestions}'>{$result->string}</span>";
-            case ($result instanceof Grammar):
+            case $result instanceof Grammar:
                 $result->getInfo();
+
                 return "<span class='atd-{$result->type}' data-info='{$result->hint_html}'>{$result->string}</span>";
-            case ($result instanceof Suggestion):
+            case $result instanceof Suggestion:
                 $result->getInfo();
                 $suggestions = json_encode($result->getSuggestions());
+
                 return "<span class='atd-{$result->type}' data-info='{$result->hint_html}' data-suggestions='{$suggestions}'>{$result->string}</span>";
 
         }
@@ -60,20 +64,21 @@ class FormatText
     private function string($result, $replace = false)
     {
         $string = '';
-        if(!empty($result->precontext)) {
-            $string .= $result->precontext . ' ';
+        if (!empty($result->precontext)) {
+            $string .= $result->precontext.' ';
         }
-        if(!$replace) {
+        if (!$replace) {
             $string .= $result->string;
         } else {
             $string .= $this->wrapSpan($result);
         }
+
         return $string;
     }
 
     public function getStylesAndScript()
     {
-        $style =  "<style>.atd-popover-grammar .popover-content h3{ margin: 0 0 10px 0;font-size: 1.4em;} .atd-popover-grammar .popover-content{font-size:0.9em} .atd-popover hr {margin-bottom:5px} .atd-popover ul.list-unstyled li a { cursor:pointer;padding:5px;display: block }.atd-spelling{cursor:pointer;border-bottom: 1px dotted tomato !important;}.atd-grammar{cursor:pointer;border-bottom: 1px dotted green !important;}.atd-suggestion{cursor:pointer;border-bottom: 1px dotted #0085ff !important;}</style>";
+        $style = '<style>.atd-popover-grammar .popover-content h3{ margin: 0 0 10px 0;font-size: 1.4em;} .atd-popover-grammar .popover-content{font-size:0.9em} .atd-popover hr {margin-bottom:5px} .atd-popover ul.list-unstyled li a { cursor:pointer;padding:5px;display: block }.atd-spelling{cursor:pointer;border-bottom: 1px dotted tomato !important;}.atd-grammar{cursor:pointer;border-bottom: 1px dotted green !important;}.atd-suggestion{cursor:pointer;border-bottom: 1px dotted #0085ff !important;}</style>';
         $script = "
 <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>
 <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" integrity=\"sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7\" crossorigin=\"anonymous\">
@@ -178,17 +183,15 @@ atd.output = function() {
 }
 </script>";
 
-
         return $style.$script;
     }
 
     private function wrapContainer($output)
     {
-        if(!$this->container) {
+        if (!$this->container) {
             return $output;
         }
-        return "<div id='atd-content'>".$output."</div>";
+
+        return "<div id='atd-content'>".$output.'</div>';
     }
-
-
 }

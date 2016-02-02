@@ -1,22 +1,22 @@
 <?php
 
-
 namespace RobbieP\Afterthedeadline;
 
-
-class Config {
-
+class Config
+{
     protected $key;
     protected $lang;
 
     /**
      * Config constructor.
+     *
      * @param $config
      */
     public function __construct($config)
     {
-        if( is_string($config) ) {
+        if (is_string($config)) {
             $this->key = $config;
+
             return;
         }
         $this->fill($config);
@@ -24,6 +24,7 @@ class Config {
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -33,12 +34,13 @@ class Config {
 
     /**
      * @param $config
+     *
      * @throws \Exception
      */
     private function fill($config)
     {
         $data = (array) $config;
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $this->set($key, $value);
         }
     }
@@ -46,14 +48,14 @@ class Config {
     /**
      * @param $key
      * @param $value
+     *
      * @throws \Exception
      */
     public function set($key, $value)
     {
-        if(! property_exists($this, $key)) {
-            throw new \Exception ('Invalid arguments');
+        if (!property_exists($this, $key)) {
+            throw new \Exception('Invalid arguments');
         }
         $this->{$key} = $value;
     }
-
 }

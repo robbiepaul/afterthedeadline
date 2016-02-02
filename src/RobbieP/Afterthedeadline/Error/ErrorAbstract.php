@@ -1,5 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline\Error;
+<?php
 
+namespace RobbieP\Afterthedeadline\Error;
 
 abstract class ErrorAbstract
 {
@@ -11,6 +12,7 @@ abstract class ErrorAbstract
 
     /**
      * ErrorAbstract constructor.
+     *
      * @param $result
      */
     public function __construct($result)
@@ -20,6 +22,7 @@ abstract class ErrorAbstract
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -29,12 +32,13 @@ abstract class ErrorAbstract
 
     /**
      * @param $result
+     *
      * @throws \Exception
      */
     private function fill($result)
     {
         $data = (array) $result;
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $this->set($key, $value);
         }
     }
@@ -42,12 +46,13 @@ abstract class ErrorAbstract
     /**
      * @param $key
      * @param $value
+     *
      * @throws \Exception
      */
     public function set($key, $value)
     {
-        if(! property_exists($this, $key)) {
-            throw new \Exception ('Invalid arguments');
+        if (!property_exists($this, $key)) {
+            throw new \Exception('Invalid arguments');
         }
         $this->{$key} = $value;
     }
@@ -58,11 +63,10 @@ abstract class ErrorAbstract
     public function toArray()
     {
         return [
-            'string' => $this->string,
+            'string'      => $this->string,
             'description' => $this->description,
-            'precontext' => $this->precontext,
+            'precontext'  => $this->precontext,
             'suggestions' => $this->suggestions,
         ];
     }
-
 }
