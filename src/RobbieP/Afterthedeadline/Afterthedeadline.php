@@ -1,4 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
+
+namespace RobbieP\Afterthedeadline;
 
 use RobbieP\Afterthedeadline\Config as ATDConfig;
 
@@ -15,6 +17,7 @@ class Afterthedeadline
 
     /**
      * Afterthedeadline constructor.
+     *
      * @param $data
      */
     public function __construct($data)
@@ -25,6 +28,7 @@ class Afterthedeadline
     /**
      * @param $text
      * @param array $params
+     *
      * @return $this
      */
     public function checkDocument($text, $params = [])
@@ -33,12 +37,14 @@ class Afterthedeadline
         $this->setParams($params);
         $response = $this->endpoint('checkDocument');
         $this->results = $response->get();
+
         return $this;
     }
 
     /**
      * @param $text
      * @param array $params
+     *
      * @return $this
      */
     public function checkGrammar($text, $params = [])
@@ -47,12 +53,14 @@ class Afterthedeadline
         $this->setParams($params);
         $response = $this->endpoint('checkGrammar');
         $this->results = $response->get();
+
         return $this;
     }
 
     /**
      * @param $text
      * @param array $params
+     *
      * @return $this
      */
     public function stats($text, $params = [])
@@ -61,11 +69,13 @@ class Afterthedeadline
         $this->setParams($params);
         $response = $this->endpoint('stats');
         $this->stats = $response->get();
+
         return $this;
     }
 
     /**
      * @param $error
+     *
      * @return mixed
      */
     protected function info($error)
@@ -78,36 +88,39 @@ class Afterthedeadline
      */
     public function getResults()
     {
-        if(! empty( $this->results ) ) {
+        if (!empty($this->results)) {
             return $this->results;
         }
+
         return false;
     }
 
     /**
      * @param array $results
-     * @param bool $container
+     * @param bool  $container
+     *
      * @return FormatText
      */
     public function getFormatted($results = [], $container = true)
     {
-        if(empty($results)) {
+        if (empty($results)) {
             $results = $this->getResults();
         }
-        if(!empty($results)) {
+        if (!empty($results)) {
             $formatted = new FormatText($this->text, $results, $container);
+
             return $formatted;
         }
-
     }
 
     /**
      * @param string $endpoint
+     *
      * @return string
      */
     protected function url($endpoint = '')
     {
-        return 'http://' .$this->getLanguage() . $this->url . '/' . $endpoint;
+        return 'http://'.$this->getLanguage().$this->url.'/'.$endpoint;
     }
 
     /**
@@ -115,21 +128,24 @@ class Afterthedeadline
      */
     protected function getClient()
     {
-        if( is_null($this->client) ) {
+        if (is_null($this->client)) {
             $this->client = new Client();
         }
+
         return $this->client;
     }
 
     /**
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     protected function getApiKey()
     {
-        if( ! $this->hasApiKey() ) {
-            throw new \Exception("No API key provided");
+        if (!$this->hasApiKey()) {
+            throw new \Exception('No API key provided');
         }
+
         return $this->config->get('key');
     }
 
@@ -138,28 +154,30 @@ class Afterthedeadline
      */
     protected function getLanguage()
     {
-        if( $this->hasLanguage() && ($lang = $this->config->get('lang') !== 'en') ) {
-            return $lang . '.';
+        if ($this->hasLanguage() && ($lang = $this->config->get('lang') !== 'en')) {
+            return $lang.'.';
         }
     }
-
 
     /**
      *  French - fr.service.afterthedeadline.com
      *  German - de.service.afterthedeadline.com
      *  Portuguese - pt.service.afterthedeadline.com
-     *  Spanish - es.service.afterthedeadline.com
+     *  Spanish - es.service.afterthedeadline.com.
      *
      * @param $lang
-     * @return $this
+     *
      * @throws \Exception
+     *
+     * @return $this
      */
     public function setLanguage($lang)
     {
-        if(strlen($lang) !== 2) {
-            throw new \Exception("setLanguage only accepts the 2 letter country code");
+        if (strlen($lang) !== 2) {
+            throw new \Exception('setLanguage only accepts the 2 letter country code');
         }
         $this->config->set('lang', strtolower($lang));
+
         return $this;
     }
 
@@ -181,26 +199,31 @@ class Afterthedeadline
 
     /**
      * @param $key
+     *
      * @return bool
      */
     protected function hasConfigValue($key)
     {
-        return ! empty( $this->config->get($key) );
+        return !empty($this->config->get($key));
     }
 
     /**
      * @param $params
+     *
      * @throws \Exception
      */
     private function setParams($params)
     {
-        if(!empty($this->text)) $this->params['data'] = self::filterText($this->text);
+        if (!empty($this->text)) {
+            $this->params['data'] = self::filterText($this->text);
+        }
         $this->params['key'] = $this->getApiKey();
         $this->params = array_merge($this->params, $params);
     }
 
     /**
      * @param $string
+     *
      * @return Response
      */
     private function endpoint($string)
@@ -209,16 +232,16 @@ class Afterthedeadline
     }
 
     /**
-     * Gets rid of @usernames and #hashtags
+     * Gets rid of @usernames and #hashtags.
      *
      * @param $text
+     *
      * @return mixed
      */
     public static function filterText($text)
     {
         $text = preg_replace('/[#@](\w+)/i', '', $text);
+
         return $text;
     }
-
-
 }

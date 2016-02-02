@@ -1,14 +1,18 @@
-<?php namespace RobbieP\Afterthedeadline\Facades;
+<?php
+
+namespace RobbieP\Afterthedeadline\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Afterthedeadline extends Facade  {
-
+class Afterthedeadline extends Facade
+{
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'afterthedeadline'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'afterthedeadline';
+    }
 }

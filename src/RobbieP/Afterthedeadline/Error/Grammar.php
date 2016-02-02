@@ -1,4 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline\Error;
+<?php
+
+namespace RobbieP\Afterthedeadline\Error;
 
 use RobbieP\Afterthedeadline\Error\ErrorTrait\HasInfo;
 
@@ -12,12 +14,10 @@ class Grammar extends ErrorAbstract
     public function toArray()
     {
         return [
-            'string' => $this->string,
+            'string'      => $this->string,
             'description' => $this->description,
-            'precontext' => $this->precontext,
-            'url' => $this->url
+            'precontext'  => $this->precontext,
+            'url'         => $this->url,
         ];
     }
-
-
 }

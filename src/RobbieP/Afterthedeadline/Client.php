@@ -1,7 +1,9 @@
-<?php namespace RobbieP\Afterthedeadline;
+<?php
 
-class Client {
+namespace RobbieP\Afterthedeadline;
 
+class Client
+{
     protected $adapter;
     protected $request;
     protected $response;
@@ -18,12 +20,13 @@ class Client {
     /**
      * @param $url
      * @param $params
+     *
      * @return Response
      */
     public function get($url, $params)
     {
         $body = [
-            'query' => $params
+            'query' => $params,
         ];
         $response = $this->adapter->get($url, $body);
 
@@ -35,15 +38,16 @@ class Client {
     /**
      * @param $url
      * @param $params
+     *
      * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
      */
     public function post($url, $params)
     {
         $body = [
-            'body' => $params
+            'body' => $params,
         ];
         $response = $this->adapter->post($url, $body);
+
         return $response;
     }
-
 }

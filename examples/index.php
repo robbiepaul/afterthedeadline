@@ -1,9 +1,8 @@
-<?php require_once('../vendor/autoload.php');
+<?php require_once '../vendor/autoload.php';
 
 $m = new \RobbieP\Afterthedeadline\Afterthedeadline(['key' => md5(time())]);
 
-$m->checkDocument("that particular course down as much as I want to #whaterver because. that many people were excused from the rigours of learning English");
-
+$m->checkDocument('that particular course down as much as I want to #whaterver because. that many people were excused from the rigours of learning English');
 
 ?>
 <html>

@@ -1,4 +1,6 @@
-<?php namespace RobbieP\Afterthedeadline\Error\ErrorTrait;
+<?php
+
+namespace RobbieP\Afterthedeadline\Error\ErrorTrait;
 
 trait HasInfo
 {
@@ -9,7 +11,7 @@ trait HasInfo
     public function getInfo()
     {
         try {
-            $this->hint_html = preg_replace( "/\r|\n/", "", @file_get_contents($this->url) );
+            $this->hint_html = preg_replace("/\r|\n/", '', @file_get_contents($this->url));
             $this->hint_text = strip_tags($this->hint_html);
         } catch (\Exception $e) {
             sleep(1);
