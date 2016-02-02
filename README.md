@@ -1,5 +1,6 @@
 
 # After The Deadline API PHP Wrapper
+[![Latest Stable Version](https://poser.pugx.org/robbiep/afterthedeadline/v/stable)](https://packagist.org/packages/robbiep/afterthedeadline) [![Total Downloads](https://poser.pugx.org/robbiep/afterthedeadline/downloads)](https://packagist.org/packages/robbiep/afterthedeadline) [![Latest Unstable Version](https://poser.pugx.org/robbiep/afterthedeadline/v/unstable)](https://packagist.org/packages/robbiep/afterthedeadline) [![License](https://poser.pugx.org/robbiep/afterthedeadline/license)](https://packagist.org/packages/robbiep/afterthedeadline) [![StyleCI](https://styleci.io/repos/49351188/shield)](https://styleci.io/repos/49351188)
 
 This is a PHP wrapper for the [After the Deadline API](http://www.afterthedeadline.com/api.slp)
 > After the Deadline is a language checker for the web with: Contextual Spell Checking, Advanced Style Checking and Intelligent Grammar Checking
