@@ -14,7 +14,7 @@ Add this to your `composer.json` dependencies:
 
 ```js
 "require": {
-   "robbiep/afterthedeadline": "0.0.*"
+   "robbiep/afterthedeadline": "^0.0"
 }
 ```
 
