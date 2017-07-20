@@ -32,7 +32,7 @@ class AfterthedeadlineServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['afterthedeadline'] = $this->app->share(function ($app) {
+        $this->app->singleton('afterthedeadline', function() {
             return new Afterthedeadline(config('afterthedeadline'));
         });
     }
